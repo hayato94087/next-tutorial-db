@@ -3,8 +3,8 @@ import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 import typescript from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
-import unicorn from "eslint-plugin-unicorn";
 import importPlugin from "eslint-plugin-import";
+import unicorn from "eslint-plugin-unicorn";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,8 +19,8 @@ const eslintConfig = [
     files: ["**/*.ts", "**/*.tsx"],
     plugins: {
       "@typescript-eslint": typescript,
-      "unicorn": unicorn,
-      "import": importPlugin,
+      unicorn: unicorn,
+      import: importPlugin,
     },
     languageOptions: {
       parser: typescriptParser,
@@ -40,7 +40,10 @@ const eslintConfig = [
           fixStyle: "inline-type-imports",
         },
       ],
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
       "@typescript-eslint/require-await": "off",
       "@typescript-eslint/no-misused-promises": [
         "error",
@@ -73,8 +76,8 @@ const eslintConfig = [
     },
   },
   {
-    ignores: ["src/components/ui/*", "*.md"]
-  }
+    ignores: ["src/components/ui/*", "*.md"],
+  },
 ];
 
 export default eslintConfig;
