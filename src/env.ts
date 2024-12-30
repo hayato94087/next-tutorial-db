@@ -13,14 +13,32 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    /**
+     * Prisma Client がデータベースへ接続するためのデータベース接続先
+     */
+    DATABASE_URL: z.string().url(),
+    /**
+     * Prisma CLI がデータベースの操作をするためのデータベース接続先
+     */
+    DIRECT_URL: z.string().url(),
   },
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    /**
+     * Supabase の URL
+     */
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
+    /**
+     * Supabase の匿名キー
+     */
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
   },
   runtimeEnv: {
     DEBUG_URL: process.env.DEBUG_URL,
     NODE_ENV: process.env.NODE_ENV,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    DATABASE_URL: process.env.DATABASE_URL,
+    DIRECT_URL: process.env.DIRECT_URL,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,
