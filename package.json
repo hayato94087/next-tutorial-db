@@ -13,10 +13,11 @@
     "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" && prisma format",
     "typecheck": "tsc --noEmit",
     "clean": "git clean -xdf node_modules dist",
-    "db:migrate": "prisma migrate dev",
     "prepare": "husky",
     "postinstall": "prisma generate",
-    "db:seed": "prisma db seed"
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio"
   },
   "prisma": {
     "seed": "pnpm vite-node prisma/seed.ts"
