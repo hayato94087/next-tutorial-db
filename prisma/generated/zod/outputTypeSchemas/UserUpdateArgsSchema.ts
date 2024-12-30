@@ -1,0 +1,29 @@
+import type { Prisma } from "@prisma/client";
+import { z } from "zod";
+
+import { UserUncheckedUpdateInputSchema } from "../inputTypeSchemas/UserUncheckedUpdateInputSchema";
+import { UserUpdateInputSchema } from "../inputTypeSchemas/UserUpdateInputSchema";
+import { UserWhereUniqueInputSchema } from "../inputTypeSchemas/UserWhereUniqueInputSchema";
+
+// Select schema needs to be in file to prevent circular imports
+//------------------------------------------------------
+
+export const UserSelectSchema: z.ZodType<Prisma.UserSelect> = z
+  .object({
+    id: z.boolean().optional(),
+    email: z.boolean().optional(),
+    name: z.boolean().optional(),
+    password: z.boolean().optional(),
+    role: z.boolean().optional(),
+  })
+  .strict();
+
+export const UserUpdateArgsSchema: z.ZodType<Prisma.UserUpdateArgs> = z
+  .object({
+    select: UserSelectSchema.optional(),
+    data: z.union([UserUpdateInputSchema, UserUncheckedUpdateInputSchema]),
+    where: UserWhereUniqueInputSchema,
+  })
+  .strict() as z.ZodType<Prisma.UserUpdateArgs>;
+
+export default UserUpdateArgsSchema;
