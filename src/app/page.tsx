@@ -1,16 +1,10 @@
 import { HelloUniverseLabel } from "@/components/hello-universe-label";
 import { env } from "@/env";
-import { db } from "@/server/db";
+import { getUsers } from "@/server/user";
 
 export default async function Home() {
   const url = env.DEBUG_URL;
-  const users = await db.user.findMany({
-    select: {
-      id: true,
-      email: true,
-      name: true,
-    },
-  });
+  const users = await getUsers();
 
   return (
     <main>
