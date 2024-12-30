@@ -14,11 +14,17 @@
     "typecheck": "tsc --noEmit",
     "clean": "git clean -xdf node_modules dist",
     "db:migrate": "prisma migrate dev",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "prisma generate",
+    "db:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "pnpm vite-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.1.0",
     "@t3-oss/env-nextjs": "^0.11.1",
+    "argon2": "^0.41.1",
     "next": "15.1.2",
     "prisma": "^6.1.0",
     "react": "^19.0.0",
@@ -43,6 +49,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-node": "^2.1.8"
   }
 }
