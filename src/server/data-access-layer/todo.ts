@@ -1,7 +1,10 @@
 import "server-only";
 
-import type { Todo } from "@prisma/client";
 import { db } from "@/server/db";
+import { type TodoSchema } from "prisma/generated/zod/modelSchema/TodoSchema";
+import { type z } from "zod";
+
+type Todo = z.infer<typeof TodoSchema>;
 
 function createTodoDTO(input: Todo): Todo {
   return {
