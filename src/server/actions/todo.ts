@@ -1,5 +1,6 @@
 "use server";
 
+import type TodoCreateInputSchema from "prisma/generated/zod/inputTypeSchemas/TodoCreateInputSchema";
 import { revalidatePath } from "next/cache";
 import {
   createTodo,
@@ -7,7 +8,9 @@ import {
   getTodos,
   updateTodo,
 } from "@/server/data-access-layer/todo";
+import TodoUpdateInputSchema from "prisma/generated/zod/inputTypeSchemas/TodoUpdateInputSchema";
 import { type Todo } from "prisma/generated/zod/modelSchema/TodoSchema";
+import { z } from "zod";
 
 type ActionResponse<T = void> = {
   success: boolean;
@@ -17,6 +20,13 @@ type ActionResponse<T = void> = {
 };
 
 function handleError<T>(error: unknown, action: string): ActionResponse<T> {
+  if (error instanceof z.ZodError) {
+    return {
+      success: false,
+      error: `バリデーションエラー: ${error.errors.map((err) => err.message).join(", ")}`,
+      statusCode: 400,
+    };
+  }
   if (error instanceof Error) {
     return {
       success: false,
@@ -40,8 +50,9 @@ export async function fetchTodos(): Promise<ActionResponse<Todo[]>> {
   }
 }
 
+type TodoCreateInput = z.infer<typeof TodoCreateInputSchema>;
 export async function addTodo(
-  data: Omit<Todo, "id" | "createdAt" | "updatedAt">,
+  data: TodoCreateInput,
 ): Promise<ActionResponse<Todo>> {
   try {
     const newTodo = await createTodo(data);
@@ -51,13 +62,16 @@ export async function addTodo(
     return handleError(error, "作成");
   }
 }
+type TodoUpdateInput = z.infer<typeof TodoUpdateInputSchema>;
 
 export async function toggleTodoCompletion(
   id: number,
-  data: Partial<Omit<Todo, "createdAt" | "updatedAt">>,
+  data: TodoUpdateInput,
 ): Promise<ActionResponse<Todo>> {
   try {
-    const updatedTodo = await updateTodo(id, data);
+    const validatedData = TodoUpdateInputSchema.parse(data);
+
+    const updatedTodo = await updateTodo(id, validatedData);
     revalidatePath("/todo");
     return { success: true, data: updatedTodo };
   } catch (error) {
