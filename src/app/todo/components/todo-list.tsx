@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { removeTodo, toggleTodoCompletion } from "@/server/actions/todo";
-import { type Todo } from "@prisma/client";
+import { type Todo } from "prisma/generated/zod/modelSchema/TodoSchema";
 
 export function TodoList({ initialTodos }: { initialTodos: Todo[] }) {
   const [todos, setTodos] = useState(initialTodos);

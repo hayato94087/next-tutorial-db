@@ -14,7 +14,7 @@ export const TodoWhereUniqueInputSchema: z.ZodType<Prisma.TodoWhereUniqueInput> 
   AND: z.union([ z.lazy(() => TodoWhereInputSchema),z.lazy(() => TodoWhereInputSchema).array() ]).optional(),
   OR: z.lazy(() => TodoWhereInputSchema).array().optional(),
   NOT: z.union([ z.lazy(() => TodoWhereInputSchema),z.lazy(() => TodoWhereInputSchema).array() ]).optional(),
-  title: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  title: z.union([ z.lazy(() => StringFilterSchema),z.string().max(10, { message: "タイトルは10文字以内で入力してください" }) ]).optional(),
   completed: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),

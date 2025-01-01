@@ -7,7 +7,7 @@ import {
   getTodos,
   updateTodo,
 } from "@/server/data-access-layer/todo";
-import { type Todo } from "@prisma/client";
+import { type Todo } from "prisma/generated/zod/modelSchema/TodoSchema";
 
 type ActionResponse<T = void> = {
   success: boolean;
