@@ -31,6 +31,9 @@ importers:
       zod:
         specifier: ^3.24.1
         version: 3.24.1
+      zod-prisma-types:
+        specifier: ^3.2.1
+        version: 3.2.1(@prisma/client@6.1.0(prisma@6.1.0))(prisma@6.1.0)
     devDependencies:
       "@eslint/eslintrc":
         specifier: ^3
@@ -837,6 +840,12 @@ packages:
         integrity: sha512-asdFi7TvPlEZ8CzSZ/+Du5wZ27q6OJbRSXh+S8ISZguu+S9KtS/gP7NeXceZyb1Jv1SM1S5YfiCv+STDsG6rrg==,
       }
 
+  "@prisma/generator-helper@6.1.0":
+    resolution:
+      {
+        integrity: sha512-drHaTKRmRsz6esHk2dpn7aPoxfttoqkYWSaI7zXsL5YQz73jww1YgJpGbPgOUiblriJAtdT4o7mibMqnf8TOsA==,
+      }
+
   "@prisma/get-platform@6.1.0":
     resolution:
       {
@@ -1498,6 +1507,12 @@ packages:
     resolution:
       {
         integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==,
+      }
+
+  code-block-writer@12.0.0:
+    resolution:
+      {
+        integrity: sha512-q4dMFMlXtKR3XNBHyMHt/3pwYNA69EDk00lloMOaaUMKPUXBw6lpXtbu3MMVG6/uOihGnRDOlkyqsONEUj60+w==,
       }
 
   color-convert@2.0.1:
@@ -2735,6 +2750,12 @@ packages:
     resolution:
       {
         integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==,
+      }
+
+  lodash@4.17.21:
+    resolution:
+      {
+        integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
       }
 
   log-update@6.1.0:
@@ -4061,6 +4082,16 @@ packages:
       }
     engines: { node: ">=10" }
 
+  zod-prisma-types@3.2.1:
+    resolution:
+      {
+        integrity: sha512-qsOD8aMVx3Yg9gHctvhTRpavaJizt8xUda6qjwOcH7suvrirXax38tjs0ilKcY7GKbyY57q2rZ+uoSDnzVXpag==,
+      }
+    hasBin: true
+    peerDependencies:
+      "@prisma/client": ^4.x.x || ^5.x.x || ^6.x.x
+      prisma: ^4.x.x || ^5.x.x || ^6.x.x
+
   zod@3.24.1:
     resolution:
       {
@@ -4425,6 +4456,10 @@ snapshots:
       "@prisma/debug": 6.1.0
       "@prisma/engines-version": 6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959
       "@prisma/get-platform": 6.1.0
+
+  "@prisma/generator-helper@6.1.0":
+    dependencies:
+      "@prisma/debug": 6.1.0
 
   "@prisma/get-platform@6.1.0":
     dependencies:
@@ -4822,6 +4857,8 @@ snapshots:
       string-width: 7.2.0
 
   client-only@0.0.1: {}
+
+  code-block-writer@12.0.0: {}
 
   color-convert@2.0.1:
     dependencies:
@@ -5711,6 +5748,8 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
+  lodash@4.17.21: {}
+
   log-update@6.1.0:
     dependencies:
       ansi-escapes: 7.0.0
@@ -6571,5 +6610,14 @@ snapshots:
   yaml@2.6.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zod-prisma-types@3.2.1(@prisma/client@6.1.0(prisma@6.1.0))(prisma@6.1.0):
+    dependencies:
+      "@prisma/client": 6.1.0(prisma@6.1.0)
+      "@prisma/generator-helper": 6.1.0
+      code-block-writer: 12.0.0
+      lodash: 4.17.21
+      prisma: 6.1.0
+      zod: 3.24.1
 
   zod@3.24.1: {}
